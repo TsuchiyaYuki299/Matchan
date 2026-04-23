@@ -2,15 +2,24 @@
   "name": "tmp",
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev src/index.ts --ip 0.0.0.0 --port 8787",
+    "dev:api": "wrangler dev src/index.ts --ip 0.0.0.0 --port 8787",
+    "dev:ui": "vite",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
-    "hono": "^4.12.14"
+    "hono": "^4.12.14",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.4",
     "@types/node": "^25.6.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.4",
+    "vite": "^8.0.10",
     "wrangler": "^4.84.1"
   }
 }
