@@ -1,0 +1,29 @@
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: コードのチェックアウト（ロボットがコードを受け取る）
+        uses: actions/checkout@v4
+
+      - name: Node.jsの準備（ロボットの環境作り）
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: パッケージのインストール（必要な道具を揃える）
+        run: npm install
+
+      - name: Cloudflareへデプロイ（本番環境へアップロード）
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
